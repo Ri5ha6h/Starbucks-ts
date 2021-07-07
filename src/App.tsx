@@ -1,26 +1,56 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
 
-function App() {
+import Footer from './components/Footer';
+import Gift from './components/Gift';
+
+import Nav from './components/Nav';
+import NotFound from './components/NotFound';
+import Reward from './components/Reward';
+import ConfirmationDialog from './ConfirmationDialog';
+
+interface Props {}
+const App: React.FC<Props> = (props) => {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  console.log("is dialog open", isDialogOpen)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="font-sans ">
+      {/* <Router>
+        <Nav />
+
+        <Switch>
+          <Redirect from="/" to="/reward" exact />
+          <Route path="/reward">
+            <Reward />
+          </Route>
+          <Route path="/gift">
+            <Gift />
+          </Route>
+          <Route>
+            <NotFound />
+          </Route>
+        </Switch>
+      </Router>
+      <Footer /> */}
+
+      <div>
+        <button
+          onClick={() => setIsDialogOpen(true)}
+          className="w-full mx-auto mt-20 text-lg underline border-none text-primary-200 active:text-primary-300"
         >
-          Learn React
-        </a>
-      </header>
+          Click to open confirm Modal
+        </button>
+        <ConfirmationDialog open={isDialogOpen} onClose={setIsDialogOpen} />
+      </div>
     </div>
   );
-}
+};
 
+App.defaultProps = {};
 export default App;
