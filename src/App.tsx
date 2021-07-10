@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,16 +12,12 @@ import Gift from './components/Gift';
 import Nav from './components/Nav';
 import NotFound from './components/NotFound';
 import Reward from './components/Reward';
-import ConfirmationDialog from './ConfirmationDialog';
 
 interface Props {}
 const App: React.FC<Props> = (props) => {
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  console.log("is dialog open", isDialogOpen)
-
   return (
     <div className="font-sans ">
-      {/* <Router>
+      <Router>
         <Nav />
 
         <Switch>
@@ -37,17 +33,7 @@ const App: React.FC<Props> = (props) => {
           </Route>
         </Switch>
       </Router>
-      <Footer /> */}
-
-      <div>
-        <button
-          onClick={() => setIsDialogOpen(true)}
-          className="w-full mx-auto mt-20 text-lg underline border-none text-primary-200 active:text-primary-300"
-        >
-          Click to open confirm Modal
-        </button>
-        <ConfirmationDialog open={isDialogOpen} onClose={setIsDialogOpen} />
-      </div>
+      <Footer />
     </div>
   );
 };

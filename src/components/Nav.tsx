@@ -7,6 +7,8 @@ interface Props {}
 const Nav: React.FC<Props> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <>
       <nav
@@ -88,8 +90,6 @@ const Nav: React.FC<Props> = (props) => {
             <svg
               className="block w-6 h-6 fill-current"
               xmlns="http://www.w3.org/2000/svg"
-              fill-rule="evenodd"
-              clip-rule="evenodd"
             >
               <path
                 d="M24 18v1h-24v-1h24zm0-6v1h-24v-1h24zm0-6v1h-24v-1h24z"
@@ -109,8 +109,6 @@ const Nav: React.FC<Props> = (props) => {
             <svg
               className="block w-6 h-6 fill-current"
               xmlns="http://www.w3.org/2000/svg"
-              fill-rule="evenodd"
-              clip-rule="evenodd"
             >
               <path d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z" />
             </svg>
@@ -145,17 +143,24 @@ const Nav: React.FC<Props> = (props) => {
               <div className="divide-y-2 divide-gray-200 ">
                 <ul className="py-10 text-lg tracking-wide">
                   <li className="">
-                    <a href="/" className="flex justify-between">
+                    <a href="/" className="flex justify-between ">
                       <span>Menu</span>
-                      <svg
-                        viewBox="0 0 24 24"
-                        className="w-6 h-6 overflow-visible fill-current valign-middle"
-                        preserveAspectRatio="xMidYMid meet"
-                        aria-hidden="true"
-                        focusable="false"
+                      <button
+                        className="focus:outline-none"
+                        onClick={() => {
+                          setIsMenuOpen(true);
+                        }}
                       >
-                        <path d="M8.902 17.656c-.293.293-.293.768 0 1.06.293.294.768.294 1.06 0L16.38 12.3c.293-.293.293-.768 0-1.06L9.86 4.72c-.293-.293-.767-.293-1.06 0-.293.293-.293.767 0 1.06l5.99 5.99L8.9 17.656z"></path>
-                      </svg>
+                        <svg
+                          viewBox="0 0 24 24"
+                          className="w-6 h-6 overflow-visible fill-current valign-middle "
+                          preserveAspectRatio="xMidYMid meet"
+                          aria-hidden="true"
+                          focusable="false"
+                        >
+                          <path d="M8.902 17.656c-.293.293-.293.768 0 1.06.293.294.768.294 1.06 0L16.38 12.3c.293-.293.293-.768 0-1.06L9.86 4.72c-.293-.293-.767-.293-1.06 0-.293.293-.293.767 0 1.06l5.99 5.99L8.9 17.656z"></path>
+                        </svg>
+                      </button>
                     </a>
                   </li>
                   <li className="mt-5">
@@ -200,6 +205,34 @@ const Nav: React.FC<Props> = (props) => {
           </Transition.Child>
         </Dialog>
       </Transition.Root>
+      <Transition
+        show={isMenuOpen}
+        as={Fragment}
+        unmount={false}
+        enter="transition-transform duration-700"
+        enterFrom="translate-x-full"
+        enterTo="translate-x-0"
+        leave="transition-transform duration-500"
+        leaveFrom="translate-x-0"
+        leaveTo="translate-x-full"
+      >
+        <div className="fixed top-0 bottom-0 right-0 z-30 w-4/5 p-8 pt-32 bg-white">
+          <div className="relative bg-secondary-100">
+            <button onClick={() => setIsMenuOpen(false)}>
+              <svg
+                viewBox="0 0 24 24"
+                className="absolute w-6 h-6 overflow-visible transform rotate-180 fill-current valign-middle"
+                preserveAspectRatio="xMidYMid meet"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path d="M8.902 17.656c-.293.293-.293.768 0 1.06.293.294.768.294 1.06 0L16.38 12.3c.293-.293.293-.768 0-1.06L9.86 4.72c-.293-.293-.767-.293-1.06 0-.293.293-.293.767 0 1.06l5.99 5.99L8.9 17.656z"></path>
+              </svg>
+            </button>
+            <span className="text-lg text-center">Menu</span>
+          </div>
+        </div>
+      </Transition>
     </>
   );
 };

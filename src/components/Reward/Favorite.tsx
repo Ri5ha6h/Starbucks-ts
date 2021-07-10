@@ -1,43 +1,75 @@
 import React from 'react';
-import image from '../../images/025.png';
-import FavoriteButton from './subComponents/FavoriteButton';
+import image25 from '../../images/025.png';
+import image50 from '../../images/050.png';
+import image150 from '../../images/150.png';
+import image200 from '../../images/200.png';
+import image400 from '../../images/400.png';
+import TabList from './subComponents/TabList';
 import FavoriteDrinks from './subComponents/FavoriteDrinks';
+import Tab from './subComponents/Tab';
 
 interface Props {}
 
 const Favorite: React.FC<Props> = () => {
-  const tabTitle = ['25', '50', '150', '200', '400'];
-
   return (
     <section className="w-full pt-10 ">
-      <div className="py-1 bg-primary-50">
-        <h2 className="mt-8 text-xl font-medium text-center md:text-3xl md:font-semibold">
-          Get your favorites for free
-        </h2>
-
-        <div className="relative max-w-xl mx-auto mt-5 lg:mt-10">
-          <div className="flex text-xl font-bold">
-            {tabTitle.map((title, index) => (
-              <FavoriteButton
-                select={index}
-                favoriteNumber={title}
-              ></FavoriteButton>
-            ))}
-          </div>
-          <div className="absolute w-1/5 h-1 bg-primary-200"></div>
-        </div>
-      </div>
-      <div className="flex flex-col items-center justify-center py-10 bg-primary-100 lg:flex-row">
-        <FavoriteDrinks image={image} alt="25">
-          <h4 className="text-lg font-normal text-center lg:text-2xl lg:font-medium lg:text-left">
-            Customize your drink
-          </h4>
-          <p className="py-4 text-center lg:py-5 lg:max-w-sm lg:text-left">
-            Make your drink just right with an extra espresso shot, dairy
-            substitute or a dash of your favorite syrup.
-          </p>
-        </FavoriteDrinks>
-      </div>
+      <TabList>
+        <Tab title={25}>
+          <FavoriteDrinks image={image25} alt="25">
+            <h4 className="text-lg font-normal text-center lg:text-2xl lg:font-medium lg:text-left">
+              Customize your drink
+            </h4>
+            <p className="py-4 text-center lg:text-left">
+              Make your drink just right with an extra espresso shot, dairy
+              substitute or a dash of your favorite syrup.
+            </p>
+          </FavoriteDrinks>
+        </Tab>
+        <Tab title={50}>
+          <FavoriteDrinks image={image50} alt="50">
+            <h4 className="text-lg font-normal text-center lg:text-2xl lg:font-medium lg:text-left">
+              Brewed hot coffee, bakery item or hot tea
+            </h4>
+            <p className="py-4 text-center lg:text-left">
+              Pair coffee cake or an almond croissant with your fresh cup of hot
+              brew.
+            </p>
+          </FavoriteDrinks>
+        </Tab>
+        <Tab title={150}>
+          <FavoriteDrinks image={image150} alt="150">
+            <h4 className="text-lg font-normal text-center lg:text-2xl lg:font-medium lg:text-left">
+              Handcrafted drink, hot breakfast or parfait
+            </h4>
+            <p className="py-4 text-center lg:text-left">
+              Have a really good morning with a breakfast sandwich, oatmeal or
+              your favorite drink.
+            </p>
+          </FavoriteDrinks>
+        </Tab>
+        <Tab title={200}>
+          <FavoriteDrinks image={image200} alt="200">
+            <h4 className="text-lg font-normal text-center lg:text-2xl lg:font-medium lg:text-left">
+              Salad, sandwich or protein box
+            </h4>
+            <p className="py-4 text-center lg:text-left">
+              Nourish your day with a hearty Chipotle Chicken Wrap or Eggs &
+              Cheese Protein Box.
+            </p>
+          </FavoriteDrinks>
+        </Tab>
+        <Tab title={400}>
+          <FavoriteDrinks image={image400} alt="400">
+            <h4 className="text-lg font-normal text-center lg:text-2xl lg:font-medium lg:text-left">
+              Select merchandise or at-home coffee
+            </h4>
+            <p className="py-4 text-center lg:text-left">
+              Take home a signature cup, a bag of coffee or your choice of
+              select coffee accessories.
+            </p>
+          </FavoriteDrinks>
+        </Tab>
+      </TabList>
     </section>
   );
 };

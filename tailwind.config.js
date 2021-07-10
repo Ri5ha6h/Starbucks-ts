@@ -41,6 +41,9 @@ module.exports = {
         '3/4': '75%',
         '1/2': '50%',
       },
+      translate: {
+        '1/5': '20%',
+      },
     },
   },
   variants: {

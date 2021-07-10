@@ -8,9 +8,9 @@ interface Props {
 const FavoriteDrinks: React.FC<Props> = (props) => {
   return (
     <>
-      <div className="flex justify-end flex-1 flex-shrink-0">
+      <div className="flex justify-end flex-1 ">
         <img
-          className="content-center lg:w-96"
+          className="content-center object-cover w-full h-auto max-w-1/2"
           src={props.image}
           alt={props.alt}
         />
